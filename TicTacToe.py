@@ -69,11 +69,12 @@ def run(board) :
             print('Invalid input')
             time.sleep(2)
             board.print_board()
+        if board.check_win()[0] :
+            print(board.check_win()[1], ' wins')
+            end = True
+            break
         if board.isfull() :
             print('Game Over')
-            end = True
-        elif board.check_win()[0] :
-            print(board.check_win()[1], ' wins')
             end = True
 
 replay = True
@@ -90,9 +91,3 @@ while replay :
         clearConsole()
         print('Thank you for playing')
         replay = False
-
-
-
-
-    
-    
