@@ -16,7 +16,7 @@ class board :
         print(self.board[4], ' | ', self.board[5], ' | ', self.board[6])
         print(self.board[1], ' | ', self.board[2], ' | ', self.board[3])
         print('-----------')
-    
+
     def isfull(self) :
         for i in range(1, 10) :
             if self.board[i] == 'X' or self.board[i] == 'O' :
@@ -90,7 +90,11 @@ while replay :
         my_board = board()
         my_board.print_board()
         run(my_board)
-    else :
+    elif choice == 'n' :
         clearConsole()
         print('Thank you for playing')
-        replay = False
+        break
+    else :
+        print('Invalid input')
+        time.sleep(2)
+        clearConsole()
