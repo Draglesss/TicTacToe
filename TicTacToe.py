@@ -49,10 +49,9 @@ my_board = board()
 my_board.print_board()
 
 def run(board) :
-    end = False
     turn = 'X'
     stuck = False
-    while end == False :
+    while not board.isfull() :
         stuck = False
         inp = input('Enter the position: ')
         if int(inp) in range(1,10) :
@@ -74,12 +73,8 @@ def run(board) :
             board.print_board()
         if board.check_win()[0] :
             print(board.check_win()[1], ' wins')
-            end = True
             break
-        if board.isfull() :
-            print('Game Over')
-            end = True
-
+    print('Game Over')
 replay = True
 run(my_board)
 while replay :
