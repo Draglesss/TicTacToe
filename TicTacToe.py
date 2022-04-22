@@ -56,9 +56,9 @@ my_board.print_board()
 
 def run(board) :
     turn = 'X'
-    stuck = False
+    cancel = False
     while not board.isfull() :
-        stuck = False
+        cancel = False
         inp = input('Enter the position: ')
         if int(inp) in range(1,10) :
             if board.board[int(inp)].isdigit() == True :
@@ -68,10 +68,10 @@ def run(board) :
                 print('Position already taken')
                 time.sleep(2)
                 board.print_board()
-                stuck = True
-            if turn == 'X' and stuck == False :
+                cancel = True
+            if turn == 'X' and cancel == False :
                 turn = 'O'
-            elif turn == 'O' and stuck == False:
+            elif turn == 'O' and cancel == False:
                 turn = 'X'
         else :
             print('Invalid input')
