@@ -9,13 +9,15 @@ def clearConsole() :
 class board :
     def __init__(self) :
         self.board = ['', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    
     def print_board(self) :
         clearConsole()
+        print('---------------')
         print(self.board[7], ' | ', self.board[8], ' | ', self.board[9])
+        print('---------------')
         print(self.board[4], ' | ', self.board[5], ' | ', self.board[6])
+        print('---------------')
         print(self.board[1], ' | ', self.board[2], ' | ', self.board[3])
-        print('-----------')
+        print('---------------')
 
     def isfull(self) :
         for i in range(1, 10) :
@@ -50,19 +52,25 @@ class board :
            
     def new_board(self) :
         self.board = ['', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
 my_board = board()
 my_board.print_board()
 
 def run(board) :
     turn = 'X'
-    cancel = False
     while not board.isfull() :
         cancel = False
-        inp = input('Enter the position: ')
-        if int(inp) in range(1,10) :
-            if board.board[int(inp)].isdigit() == True :
-                board.board[int(inp)] = turn
+        try :
+            inp = int(input('Enter the position: '))
+        except ValueError :
+            print('Invalid input')
+            time.sleep(2)
+            board.print_board()
+            continue
+        finally :
+            pass
+        if inp in range(1,10) :
+            if board.board[inp].isdigit() == True :
+                board.board[inp] = turn
                 board.print_board()
             else :
                 print('Position already taken')
@@ -86,14 +94,14 @@ replay = True
 run(my_board)
 while replay :
     choice = input('Do you want to play again? (y/n) ')
-    if choice == 'y' :
+    if choice == 'y' or choice == 'yes' :
         clearConsole()
         my_board.new_board()
         my_board.print_board()
         run(my_board)
-    elif choice == 'n' :
+    elif choice == 'n' or choice == 'no' :
         clearConsole()
-        print('Thank you for playing')
+        print('Thank you for playing !!')
         break
     else :
         print('Invalid input')
