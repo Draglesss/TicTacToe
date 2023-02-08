@@ -21,7 +21,7 @@ class board :
 
     def isfull(self) :
         for i in range(1, 10) :
-            if self.board[i] == 'X' or self.board[i] == 'O' :
+            if self.board[i] in ('X', 'O') :
                 continue
             else :
                 return False
@@ -46,16 +46,14 @@ class board :
             return True, self.board[3]
         else :
             return False, False
-
-    def check_tie(self) :
-        return self.isfull()
            
-    def new_board(self) :
+    def refresh(self) -> None :
         self.board = ['', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        
 my_board = board()
 my_board.print_board()
 
-def run(board) :
+def run(board : board) -> None :
     turn = 'X'
     while not board.isfull() :
         cancel = False
@@ -88,15 +86,15 @@ def run(board) :
         if board.check_win()[0] :
             print(board.check_win()[1], ' wins')
             break
-    if board.check_tie() and board.check_win()[0] == False :
-        print('Tie')
+    if board.check_win()[0] == False :
+        print('Tie !!')
 replay = True
 run(my_board)
 while replay :
     choice = input('Do you want to play again? (y/n) ')
     if choice == 'y' or choice == 'yes' :
         clearConsole()
-        my_board.new_board()
+        my_board.refresh()
         my_board.print_board()
         run(my_board)
     elif choice == 'n' or choice == 'no' :
